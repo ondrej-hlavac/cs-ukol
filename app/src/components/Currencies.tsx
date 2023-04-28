@@ -30,6 +30,15 @@ const Currencies: FC = () => {
             <th>Změna / 1 den</th>
             <th>button</th>
           </tr>
+          <tr>
+            <th>Měna</th>
+            <th>Země</th>
+            <th>Nákup</th>
+            <th>Prodej</th>
+            <th>ČNB</th>
+            <th>Změna / 1 den</th>
+            <th>button</th>
+          </tr>
         </tbody>
       </Table>
     </>

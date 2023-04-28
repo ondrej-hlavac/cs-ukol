@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { colors } from ".";
 
+// FIXME: create fixed first column for responsive
+
 export const Table = styled.table`
   border-collapse: separate;
   border-spacing: 0 0.3em;
@@ -28,6 +30,7 @@ export const Table = styled.table`
       }
 
       th {
+        padding: 0.4em;
         font-weight: lighter;
         border-top: 1px solid ${colors.SECONDARY_DARK};
         border-bottom: 1px solid ${colors.SECONDARY_DARK};
