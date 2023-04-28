@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Subheadline, Table } from "../styled";
+import { Button, Subheadline, Table } from "../styled";
 import { DayRateSwitch } from ".";
 
 const Currencies: FC = () => {
@@ -7,6 +7,8 @@ const Currencies: FC = () => {
     <>
       <Subheadline>Seznam všech kurzů</Subheadline>
       <DayRateSwitch />
+
+      {/* FIXME: sorting + save to url */}
       <Table>
         <thead>
           <tr>
@@ -28,7 +30,9 @@ const Currencies: FC = () => {
             <th>Prodej</th>
             <th>ČNB</th>
             <th>Změna / 1 den</th>
-            <th>button</th>
+            <th>
+              <Button variant="link">button</Button>
+            </th>
           </tr>
           <tr>
             <th>Měna</th>
@@ -37,7 +41,9 @@ const Currencies: FC = () => {
             <th>Prodej</th>
             <th>ČNB</th>
             <th>Změna / 1 den</th>
-            <th>button</th>
+            <th>
+              <Button variant="link">button</Button>
+            </th>
           </tr>
         </tbody>
       </Table>

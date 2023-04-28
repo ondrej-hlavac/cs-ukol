@@ -1,11 +1,18 @@
-import { useState } from "react";
-import { AppStyled } from "./App.styled";
+import { useEffect } from "react";
+import { observer } from "mobx-react";
 
-import { Headline } from "./styled";
 import { Currencies, FavoriteCurrencies } from "./components";
+import { currencyStore } from "./stores";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { AppStyled } from "./App.styled";
+import { Headline } from "./styled";
+
+export const App = observer(() => {
+  useEffect(() => {
+    currencyStore.loadData();
+  }, []);
+
+  console.log("currencyStore", JSON.stringify(currencyStore.currencyData));
 
   return (
     <AppStyled>
@@ -16,6 +23,4 @@ function App() {
       <Currencies />
     </AppStyled>
   );
-}
-
-export default App;
+});
