@@ -4,8 +4,9 @@ import { observer } from "mobx-react";
 import { CurrenciesTableHead, DayRateSwitch } from ".";
 
 import { Button, Subheadline, Table } from "../styled";
-import { currencyStore } from "../stores";
+import { currencyStore, dayRateSwitchStore } from "../stores";
 import { ICurrency } from "../types";
+import { valuateColor } from "../utils";
 
 const Currencies: FC = observer(() => {
   const handleAddFavoriteCurrency = (shortName: string) => {
@@ -24,9 +25,14 @@ const Currencies: FC = observer(() => {
         <CurrenciesTableHead />
 
         <Suspense fallback={<>loading...</>}>
+          {/* FIXME: create component for table body - component with forwarded action buttons*/}
           <tbody>
             {currencyStore.currencyData.map((currency: ICurrency) => {
               const { shortName, country, buy, sell, cnb, move } = currency;
+              const isFavorite = currencyStore.favoriteCurrencyShortNames.some(
+                (name) => name === shortName
+              );
+              const moveByDays = move + dayRateSwitchStore.moveDays * move;
 
               return (
                 <tr key={shortName}>
@@ -35,14 +41,18 @@ const Currencies: FC = observer(() => {
                   <th>{buy}</th>
                   <th>{sell}</th>
                   <th>{cnb}</th>
-                  <th>{move}</th>
+                  <th style={{ color: valuateColor(moveByDays) }}>
+                    {moveByDays.toFixed(2)}
+                  </th>
                   <th>
-                    <Button
-                      variant="link"
-                      onClick={() => handleAddFavoriteCurrency(shortName)}
-                    >
-                      Oblíbená
-                    </Button>
+                    {!isFavorite && (
+                      <Button
+                        variant="link"
+                        onClick={() => handleAddFavoriteCurrency(shortName)}
+                      >
+                        Oblíbená
+                      </Button>
+                    )}
                   </th>
                 </tr>
               );

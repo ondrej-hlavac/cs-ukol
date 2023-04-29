@@ -37,7 +37,12 @@ const Button = styled.button<ButtonProps>`
   ${(props) =>
     props.variant === "link" &&
     css`
+      font-size: 11px;
+      padding: 0;
+      text-decoration: underline;
       background-color: transparent;
+      border: none;
+      color: ${colors.SECONDARY};
     `}
 `;
 

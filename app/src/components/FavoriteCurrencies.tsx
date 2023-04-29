@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import { observer } from "mobx-react";
-import { currencyStore } from "../stores";
+import { currencyStore, dayRateSwitchStore } from "../stores";
 import { ICurrency } from "../types";
 
 import { CurrenciesTableHead } from ".";
 import { Button, Subheadline, Table } from "../styled";
+import { valuateColor } from "../utils";
 
 const FavoriteCurrencies: FC = observer(() => {
   console.log(JSON.stringify(currencyStore.favoriteCurrencies));
@@ -23,9 +24,11 @@ const FavoriteCurrencies: FC = observer(() => {
       <Subheadline>Vaše oblíbené</Subheadline>
       <Table>
         <CurrenciesTableHead />
+        {/* FIXME: create component for table body - component with forwarded action buttons => same component Currencies*/}
         <tbody>
           {currencyStore.favoriteCurrencies.map((currency: ICurrency) => {
             const { shortName, country, buy, sell, cnb, move } = currency;
+            const moveByDays = move + dayRateSwitchStore.moveDays * move;
 
             return (
               <tr key={shortName}>
@@ -34,7 +37,9 @@ const FavoriteCurrencies: FC = observer(() => {
                 <th>{buy}</th>
                 <th>{sell}</th>
                 <th>{cnb}</th>
-                <th>{move}</th>
+                <th style={{ color: valuateColor(moveByDays) }}>
+                  {moveByDays.toFixed(2)}
+                </th>
                 <th>
                   <Button
                     variant="link"

@@ -1,6 +1,9 @@
 import React, { FC } from "react";
+import { observer } from "mobx-react";
+import { daysCount } from "../constants/days";
+import { dayRateSwitchStore } from "../stores";
 
-const CurrenciesTableHead: FC = () => {
+const CurrenciesTableHead: FC = observer(() => {
   return (
     <thead>
       <tr>
@@ -9,12 +12,11 @@ const CurrenciesTableHead: FC = () => {
         <th>Nákup</th>
         <th>Prodej</th>
         <th>ČNB</th>
-        {/* TODO: update 1 den / 2 dny / 3 dny */}
-        <th>Změna / 1 den</th>
+        <th>Změna / {daysCount[dayRateSwitchStore.moveDays]}</th>
         <th>&nbsp;</th>
       </tr>
     </thead>
   );
-};
+});
 
 export default CurrenciesTableHead;
