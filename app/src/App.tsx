@@ -12,8 +12,6 @@ export const App = observer(() => {
     currencyStore.loadData();
   }, []);
 
-  console.log("currencyStore", JSON.stringify(currencyStore.currencyData));
-
   return (
     <AppStyled>
       <Headline>Kurzovní lístek</Headline>
