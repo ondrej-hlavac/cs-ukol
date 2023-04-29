@@ -1,54 +1,57 @@
-import React, { FC } from "react";
-import { Button, Subheadline, Table } from "../styled";
-import { DayRateSwitch } from ".";
+import React, { FC, Suspense } from "react";
+import { observer } from "mobx-react";
 
-const Currencies: FC = () => {
+import { CurrenciesTableHead, DayRateSwitch } from ".";
+
+import { Button, Subheadline, Table } from "../styled";
+import { currencyStore } from "../stores";
+import { ICurrency } from "../types";
+
+const Currencies: FC = observer(() => {
+  const handleAddFavoriteCurrency = (shortName: string) => {
+    // TODO: add to localstorage
+    currencyStore.addFavoriteCurrency(shortName);
+  };
+
   return (
     <>
       <Subheadline>Seznam všech kurzů</Subheadline>
       <DayRateSwitch />
 
       {/* FIXME: sorting + save to url */}
+
       <Table>
-        <thead>
-          <tr>
-            <th>Měna</th>
-            <th>Země</th>
-            <th>Nákup</th>
-            <th>Prodej</th>
-            <th>ČNB</th>
-            <th>Změna / 1 den</th>
-            <th></th> {/* action column */}
-            {/* TODO: update 1 den / 2 dny / 3 dny */}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Měna</th>
-            <th>Země</th>
-            <th>Nákup</th>
-            <th>Prodej</th>
-            <th>ČNB</th>
-            <th>Změna / 1 den</th>
-            <th>
-              <Button variant="link">button</Button>
-            </th>
-          </tr>
-          <tr>
-            <th>Měna</th>
-            <th>Země</th>
-            <th>Nákup</th>
-            <th>Prodej</th>
-            <th>ČNB</th>
-            <th>Změna / 1 den</th>
-            <th>
-              <Button variant="link">button</Button>
-            </th>
-          </tr>
-        </tbody>
+        <CurrenciesTableHead />
+
+        <Suspense fallback={<>loading...</>}>
+          <tbody>
+            {currencyStore.currencyData.map((currency: ICurrency) => {
+              const { shortName, country, buy, sell, cnb, move } = currency;
+
+              return (
+                <tr key={shortName}>
+                  <th>{shortName}</th>
+                  <th>{country}</th>
+                  <th>{buy}</th>
+                  <th>{sell}</th>
+                  <th>{cnb}</th>
+                  <th>{move}</th>
+                  <th>
+                    <Button
+                      variant="link"
+                      onClick={() => handleAddFavoriteCurrency(shortName)}
+                    >
+                      Oblíbená
+                    </Button>
+                  </th>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Suspense>
       </Table>
     </>
   );
-};
+});
 
 export default Currencies;

@@ -8,6 +8,10 @@ import { DayRateSwitchStyled } from "./DayRateSwitch.styled";
 import { Button } from "../../styled";
 
 const DayRateSwitch: FC = observer(() => {
+  const handleSetMoveDay = (dayNumber: number) => {
+    dayRateSwitchStore.setMoveDays(dayNumber);
+  };
+
   return (
     <DayRateSwitchStyled>
       {/* FIXME: this can be radio select */}
@@ -16,8 +20,8 @@ const DayRateSwitch: FC = observer(() => {
         return (
           <Button
             active={dayRateSwitchStore.moveDays === dayNumber}
-            onClick={() => dayRateSwitchStore.setMoveDays(dayNumber)}
-            key={`switch-${dayChange}`}
+            onClick={() => handleSetMoveDay(dayNumber)}
+            key={`switch-btn-${dayChange}`}
           >
             {daysChange[dayNumber]}
           </Button>

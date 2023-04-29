@@ -2,19 +2,23 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     html {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    font-size: 11px;
-    color: #757575;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        font-size: 11px;
+        color: #757575;
+    }
+
+    body {
+        padding: 5em 0 15em;
     }
 
     * {
-    box-sizing: border-box;
+        box-sizing: border-box;
     }
 
     ::selection {
-    background-color: rgb(42, 65, 81);
-    color: white;
+        background-color: rgb(0, 73, 123);
+        color: white;
     }
 `;
 

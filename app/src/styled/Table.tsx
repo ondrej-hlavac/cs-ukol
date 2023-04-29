@@ -10,6 +10,10 @@ export const Table = styled.table`
   max-width: 730px;
   margin: 2em auto 0;
 
+  th {
+    min-width: 80px;
+  }
+
   thead {
     tr {
       height: 30px;
@@ -30,7 +34,7 @@ export const Table = styled.table`
       }
 
       th {
-        padding: 0.4em;
+        padding: 0 0.4em;
         font-weight: lighter;
         border-top: 1px solid ${colors.SECONDARY_DARK};
         border-bottom: 1px solid ${colors.SECONDARY_DARK};
