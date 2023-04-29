@@ -1,4 +1,4 @@
-import React, { FC, Suspense } from "react";
+import { FC, Suspense } from "react";
 import { observer } from "mobx-react";
 
 import { CurrenciesTableHead, DayRateSwitch } from ".";

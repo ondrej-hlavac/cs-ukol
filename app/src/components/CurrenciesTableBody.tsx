@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ICurrency } from "../types";
 import { observer } from "mobx-react";
-import { currencyStore, dayRateSwitchStore } from "../stores";
-import { Button } from "../styled";
+import { dayRateSwitchStore } from "../stores";
+// import { Button } from "../styled";
 
 interface CurrenciesTableBodyProps {
   currencies: ICurrency[];
@@ -17,9 +17,9 @@ const CurrenciesTableBody: FC<CurrenciesTableBodyProps> = observer(
       <tbody>
         {currencies.map((currency: ICurrency) => {
           const { shortName, country, buy, sell, cnb, move } = currency;
-          const isFavorite = currencyStore.favoriteCurrencyShortNames.some(
-            (name) => name === shortName
-          );
+          // const isFavorite = currencyStore.favoriteCurrencyShortNames.some(
+          //   (name) => name === shortName
+          // );
           const moveByDays = move + dayRateSwitchStore.moveDays * move;
 
           return (

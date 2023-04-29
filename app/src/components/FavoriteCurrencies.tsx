@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { observer } from "mobx-react";
 
 import { currencyStore, dayRateSwitchStore } from "../stores";

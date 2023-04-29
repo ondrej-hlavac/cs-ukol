@@ -1,10 +1,38 @@
-# cs-ukol
+# Česká Spořitelna - úkol
 
-used libraries:
+vypracoval: ondrej.hlavac@outlook.com
+
+datum: 28.4.2023
+
+#
+
+Used libraries:
 
 - react
 - styled-components
+- mobx
+- react-router-dom
 
-## notes
+#
 
-FIXME in the code represents possible tuning of code
+## Start dev
+
+1. go to `app`
+2. install modules `npm install`
+3. run application `npm run dev`
+
+#
+
+## Notes
+
+`app` folder contain main application
+
+`FIXME` in the code represents possible tunning of application
+
+preview link:
+
+#
+
+## Undone
+
+App do not have tests.
