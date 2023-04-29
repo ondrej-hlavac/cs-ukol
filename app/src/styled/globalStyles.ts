@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
+        margin: 0;
         padding: 5em 0 15em;
     }
 

@@ -1,21 +1,21 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { observer } from "mobx-react";
+
 import { currencyStore, dayRateSwitchStore } from "../stores";
+import { valuateColor } from "../utils";
 import { ICurrency } from "../types";
 
-import { CurrenciesTableHead } from ".";
 import { Button, Subheadline, Table } from "../styled";
-import { valuateColor } from "../utils";
+import { CurrenciesTableHead } from ".";
 
 const FavoriteCurrencies: FC = observer(() => {
-  console.log(JSON.stringify(currencyStore.favoriteCurrencies));
-
-  // TODO: load from localstorage na useEffect a uložit do store
+  useEffect(() => {
+    currencyStore.loadFavoritesFromStorage();
+  }, []);
 
   if (currencyStore.favoriteCurrencies.length < 1) return null;
 
   const handleRemoveFavoriteCurrency = (shortName: string) => {
-    // TODO: store in localstorage
     currencyStore.removeFavoriteCurrency(shortName);
   };
 

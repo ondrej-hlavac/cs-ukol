@@ -3,7 +3,7 @@ import { ICurrency } from "../types";
 
 class CurrencyStore {
   currencyData: ICurrency[] = [];
-  favoriteCurrencyShortNames: string[] = ["AUD"];
+  favoriteCurrencyShortNames: string[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -14,6 +14,21 @@ class CurrencyStore {
     const jsonData = await response.json();
     // FIXME: validate response => error display
     this.currencyData = jsonData;
+  }
+
+  loadFavoritesFromStorage() {
+    const favorites = localStorage.getItem("favoriteCurrencyShortNames");
+
+    if (favorites) {
+      this.favoriteCurrencyShortNames = JSON.parse(favorites);
+    }
+  }
+
+  setFavoritesToStorage() {
+    localStorage.setItem(
+      "favoriteCurrencyShortNames",
+      JSON.stringify(this.favoriteCurrencyShortNames)
+    );
   }
 
   get favoriteCurrencies() {
@@ -27,6 +42,7 @@ class CurrencyStore {
   addFavoriteCurrency(shortName: string) {
     runInAction(() => {
       this.favoriteCurrencyShortNames.push(shortName);
+      this.setFavoritesToStorage();
     });
   }
 
@@ -45,6 +61,7 @@ class CurrencyStore {
       );
 
       this.favoriteCurrencyShortNames = newFavoriteCurrencies;
+      this.setFavoritesToStorage();
     });
   }
 }

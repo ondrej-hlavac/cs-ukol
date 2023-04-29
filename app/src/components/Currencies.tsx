@@ -3,19 +3,24 @@ import { observer } from "mobx-react";
 
 import { CurrenciesTableHead, DayRateSwitch } from ".";
 
-import { Button, Subheadline, Table } from "../styled";
+import { Button, Subheadline, Table, colors } from "../styled";
 import { currencyStore, dayRateSwitchStore } from "../stores";
 import { ICurrency } from "../types";
 import { valuateColor } from "../utils";
 
 const Currencies: FC = observer(() => {
   const handleAddFavoriteCurrency = (shortName: string) => {
-    // TODO: add to localstorage
     currencyStore.addFavoriteCurrency(shortName);
   };
 
   return (
-    <>
+    <section
+      style={{
+        backgroundColor: colors.BACKGROUND_LIGHT,
+        marginTop: "5em",
+        paddingBottom: "10em",
+      }}
+    >
       <Subheadline>Seznam všech kurzů</Subheadline>
       <DayRateSwitch />
 
@@ -60,7 +65,7 @@ const Currencies: FC = observer(() => {
           </tbody>
         </Suspense>
       </Table>
-    </>
+    </section>
   );
 });
 
