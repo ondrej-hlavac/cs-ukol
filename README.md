@@ -29,7 +29,7 @@ Used libraries:
 
 `FIXME` in the code represents possible tunning of application
 
-preview link:
+preview link: https://zingy-blini-1d1ba7.netlify.app
 
 #
 
